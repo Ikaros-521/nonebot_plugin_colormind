@@ -5,9 +5,9 @@ import nonebot
 # import requests
 # import asyncio
 import aiohttp
-import time
+# import time
 # from io import BytesIO
-from nonebot import on_keyword
+from nonebot import on_keyword, on_command
 from nonebot.adapters.onebot.v11 import Bot, Event
 from nonebot.adapters.onebot.v11 import Message, MessageSegment
 from nonebot.typing import T_State
@@ -18,9 +18,22 @@ from nonebot_plugin_htmlrender import (
     template_to_pic,
     get_new_page,
 )
+from nonebot.plugin import PluginMetadata
 
 
-catch_str = on_keyword({'/配色方案'})
+help_text = f"""
+命令如下(【】中的才是命令哦，记得加命令前缀)：
+【配色方案】【配色】获取一种随机配色。例如：/配色
+""".strip()
+
+__plugin_meta__ = PluginMetadata(
+    name = '随机配色方案',
+    description = '适用于nonebot2 v11的随机获取一种配色方案插件',
+    usage = help_text
+)
+
+
+catch_str = on_command("配色方案", aliases={"配色"})
 
 
 @catch_str.handle()
