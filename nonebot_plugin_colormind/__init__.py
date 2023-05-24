@@ -74,7 +74,7 @@ async def get_colormind():
     }
     API_URL = 'http://colormind.io/api/'
     async with aiohttp.ClientSession() as session:
-        async with session.get(
+        async with session.post(
             url=API_URL, 
             headers=header1,
             json={"model": "default"}
